@@ -1,8 +1,6 @@
 import React, { useEffect, useContext, useState, useRef } from "react";
 
 import Dropdown from "../components/Dropdown";
-import Switch from "../components/Switch";
-import RegionDimensions from "../components/RegionDimensions";
 import Settings from "./Settings";
 import { contentStateContext } from "../../context/ContentState";
 import { MicOffBlue } from "../../images/popup/images";
@@ -10,27 +8,8 @@ import { AlertIcon, TimeIcon } from "../../toolbar/components/SVG";
 
 const RecordingType = (props) => {
   const [contentState, setContentState] = useContext(contentStateContext);
-  const [cropActive, setCropActive] = useState(false);
   const [time, setTime] = useState(0);
-  const [URL, setURL] = useState(
-    "https://help.screenity.io/getting-started/77KizPC8MHVGfpKpqdux9D/what-are-the-technical-requirements-for-using-screenity/6kdB6qru6naVD8ZLFvX3m9"
-  );
-  const [URL2, setURL2] = useState(
-    "https://help.screenity.io/troubleshooting/9Jy5RGjNrBB42hqUdREQ7W/how-to-grant-screenity-permission-to-record-your-camera-and-microphone/x6U69TnrbMjy5CQ96Er2E9"
-  );
-
   const buttonRef = useRef(null);
-  useEffect(() => {
-    const locale = chrome.i18n.getMessage("@@ui_locale");
-    if (!locale.includes("en")) {
-      setURL(
-        `https://translate.google.com/translate?sl=en&tl=${locale}&u=https://help.screenity.io/getting-started/77KizPC8MHVGfpKpqdux9D/what-are-the-technical-requirements-for-using-screenity/6kdB6qru6naVD8ZLFvX3m9`
-      );
-      setURL2(
-        `https://translate.google.com/translate?sl=en&tl=${locale}&u=https://help.screenity.io/troubleshooting/9Jy5RGjNrBB42hqUdREQ7W/how-to-grant-screenity-permission-to-record-your-camera-and-microphone/x6U69TnrbMjy5CQ96Er2E9`
-      );
-    }
-  }, []);
 
   useEffect(() => {
     // Convert seconds to mm:ss
@@ -62,19 +41,6 @@ const RecordingType = (props) => {
   };
 
   useEffect(() => {
-    // Check if CropTarget is null
-    if (typeof CropTarget === "undefined") {
-      setCropActive(false);
-      setContentState((prevContentState) => ({
-        ...prevContentState,
-        customRegion: false,
-      }));
-    } else {
-      setCropActive(true);
-    }
-  }, []);
-
-  useEffect(() => {
     if (contentState.recording) {
       setContentState((prevContentState) => ({
         ...prevContentState,
@@ -98,40 +64,8 @@ const RecordingType = (props) => {
               {chrome.i18n.getMessage("customAreaRecordingDisabledDescription")}
             </div>
           </div>
-          <div className="popup-warning-right">
-            <a href={URL} target="_blank">
-              {chrome.i18n.getMessage("customAreaRecordingDisabledAction")}
-            </a>
-          </div>
         </div>
       )}
-      {!cropActive &&
-        contentState.recordingType === "region" &&
-        !contentState.offline && (
-          <div className="popup-warning">
-            <div className="popup-warning-left">
-              <AlertIcon />
-            </div>
-            <div className="popup-warning-middle">
-              <div className="popup-warning-title">
-                {chrome.i18n.getMessage("customAreaRecordingDisabledTitle")}
-              </div>
-              <div className="popup-warning-description">
-                {chrome.i18n.getMessage(
-                  "customAreaRecordingDisabledDescription"
-                )}
-              </div>
-            </div>
-            <div className="popup-warning-right">
-              <a
-                href="https://support.google.com/chrome/answer/95414?hl=en-GB&co=GENIE.Platform%3DDesktop"
-                target="_blank"
-              >
-                {chrome.i18n.getMessage("customAreaRecordingDisabledAction")}
-              </a>
-            </div>
-          </div>
-        )}
       {!contentState.microphonePermission && (
         <button
           className="permission-button"
@@ -177,17 +111,6 @@ const RecordingType = (props) => {
             allow="camera; microphone"
             src={chrome.runtime.getURL("waveform.html")}
           ></iframe>
-        </div>
-      )}
-      {contentState.recordingType === "region" && cropActive && (
-        <div>
-          <div className="popup-content-divider"></div>
-          <Switch
-            label={chrome.i18n.getMessage("customAreaLabel")}
-            name="customRegion"
-            value="customRegion"
-          />
-          {contentState.customRegion && <RegionDimensions />}
         </div>
       )}
       <button

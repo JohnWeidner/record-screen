@@ -49,7 +49,6 @@ var options = {
       "RecorderOffscreen",
       "index.jsx"
     ),
-    camera: path.join(__dirname, "src", "pages", "Camera", "index.jsx"),
     waveform: path.join(__dirname, "src", "pages", "Waveform", "index.jsx"),
     sandbox: path.join(__dirname, "src", "pages", "Sandbox", "index.jsx"),
     permissions: path.join(
@@ -219,12 +218,6 @@ var options = {
       ),
       filename: "recorderoffscreen.html",
       chunks: ["recorderoffscreen"],
-      cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "pages", "Camera", "index.html"),
-      filename: "camera.html",
-      chunks: ["camera"],
       cache: false,
     }),
     new HtmlWebpackPlugin({

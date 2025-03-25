@@ -1,13 +1,10 @@
 import "./styles/edit/_VideoPlayer.scss";
 import "./styles/global/_app.scss";
 
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, {  useEffect, useRef, useContext } from "react";
 // Layout
-import Editor from "./layout/editor/Editor";
 import Player from "./layout/player/Player";
 import Modal from "./components/global/Modal";
-
-import HelpButton from "./components/player/HelpButton";
 
 // Context
 import { ContentStateContext } from "./context/ContentState"; // Import the ContentState context
@@ -111,9 +108,6 @@ const Sandbox = () => {
       <Modal />
       <video></video>
       {/* Render the WaveformGenerator component and pass the ffmpeg instance as a prop */}
-      {contentState.ffmpeg &&
-        contentState.ready &&
-        contentState.mode === "edit" && <Editor />}
       {contentState.mode != "edit" && contentState.ready && <Player />}
       {!contentState.ready && (
         <div className="wrap">
@@ -164,7 +158,6 @@ const Sandbox = () => {
               </div>
             )}
           </div>
-          <HelpButton />
           <div className="setupBackgroundSVG"></div>
         </div>
       )}

@@ -7,30 +7,16 @@ import React, {
 } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 
-import {
-  RecordTabActive,
-  RecordTabInactive,
-  VideoTabActive,
-  VideoTabInactive,
-  TempLogo,
-  ProfilePic,
-} from "../images/popup/images";
+import { RecordTabActive, TempLogo, ProfilePic } from "../images/popup/images";
 
 import { Rnd } from "react-rnd";
 
-import {
-  CloseIconPopup,
-  GrabIconPopup,
-  HelpIconPopup,
-} from "../toolbar/components/SVG";
+import { CloseIconPopup } from "../toolbar/components/SVG";
 
 /* Component import */
 import RecordingTab from "./layout/RecordingTab";
-import VideosTab from "./layout/VideosTab";
 
 // Layouts
-import Announcement from "./layout/Announcement";
-import SettingsMenu from "./layout/SettingsMenu";
 
 // Context
 import { contentStateContext } from "../context/ContentState";
@@ -45,30 +31,9 @@ const PopupContainer = (props) => {
   const [elastic, setElastic] = React.useState("");
   const [shake, setShake] = React.useState("");
   const [dragging, setDragging] = React.useState("");
-  const [onboarding, setOnboarding] = useState(false);
   const [open, setOpen] = useState(false);
   const recordTabRef = useRef(null);
-  const videoTabRef = useRef(null);
   const pillRef = useRef(null);
-  const [URL, setURL] = useState("https://help.screenity.io/");
-
-  useEffect(() => {
-    // Check chrome storage
-    chrome.storage.local.get(["updatingFromOld"], function (result) {
-      if (result.updatingFromOld) {
-        setOnboarding(true);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    const locale = chrome.i18n.getMessage("@@ui_locale");
-    if (!locale.includes("en")) {
-      setURL(
-        `https://translate.google.com/translate?sl=en&tl=${locale}&u=https://help.screenity.io/`
-      );
-    }
-  }, []);
 
   const onValueChange = (tab) => {
     setTab(tab);
@@ -89,7 +54,6 @@ const PopupContainer = (props) => {
 
   useEffect(() => {
     if (!recordTabRef.current) return;
-    if (!videoTabRef.current) return;
     if (!pillRef.current) return;
 
     if (tab === "record") {
@@ -97,12 +61,8 @@ const PopupContainer = (props) => {
       pillRef.current.style.width =
         recordTabRef.current.getBoundingClientRect().width + "px";
     } else {
-      pillRef.current.style.left = videoTabRef.current.offsetLeft + "px";
-
-      pillRef.current.style.width =
-        videoTabRef.current.getBoundingClientRect().width + "px";
     }
-  }, [tab, recordTabRef.current, videoTabRef.current, pillRef.current]);
+  }, [tab, recordTabRef.current, pillRef.current]);
 
   useEffect(() => {
     contentStateRef.current = contentState;
@@ -323,37 +283,34 @@ const PopupContainer = (props) => {
           </div>
           <div className="popup-nav"></div>
           <div className="popup-content">
-            {onboarding && <Announcement setOnboarding={setOnboarding} />}
-            {!onboarding && (
-              <Tabs.Root
-                className="TabsRoot tl"
-                defaultValue="record"
-                onValueChange={onValueChange}
+            <Tabs.Root
+              className="TabsRoot tl"
+              defaultValue="record"
+              onValueChange={onValueChange}
+            >
+              <Tabs.List
+                className="TabsList tl"
+                data-value={tab}
+                aria-label="Manage your account"
+                tabIndex={0}
               >
-                <Tabs.List
-                  className="TabsList tl"
-                  data-value={tab}
-                  aria-label="Manage your account"
+                <div className="pill-anim" ref={pillRef}></div>
+                <Tabs.Trigger
+                  className="TabsTrigger tl"
+                  value="record"
+                  ref={recordTabRef}
                   tabIndex={0}
                 >
-                  <div className="pill-anim" ref={pillRef}></div>
-                  <Tabs.Trigger
-                    className="TabsTrigger tl"
-                    value="record"
-                    ref={recordTabRef}
-                    tabIndex={0}
-                  >
-                    <div className="TabsTriggerIcon">
-                      <img src={RecordTabActive} />
-                    </div>
-                    {chrome.i18n.getMessage("recordTab")}
-                  </Tabs.Trigger>
-                </Tabs.List>
-                <Tabs.Content className="TabsContent tl" value="record">
-                  <RecordingTab shadowRef={props.shadowRef} />
-                </Tabs.Content>
-              </Tabs.Root>
-            )}
+                  <div className="TabsTriggerIcon">
+                    <img src={RecordTabActive} />
+                  </div>
+                  {chrome.i18n.getMessage("recordTab")}
+                </Tabs.Trigger>
+              </Tabs.List>
+              <Tabs.Content className="TabsContent tl" value="record">
+                <RecordingTab shadowRef={props.shadowRef} />
+              </Tabs.Content>
+            </Tabs.Root>
           </div>
         </div>
       </Rnd>

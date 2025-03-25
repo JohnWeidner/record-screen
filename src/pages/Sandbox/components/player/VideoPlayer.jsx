@@ -4,9 +4,6 @@ import "../../styles/plyr.css";
 import { ContentStateContext } from "../../context/ContentState"; // Import the ContentState context
 
 // Components
-import Title from "./Title";
-import RightPanel from "../../layout/player/RightPanel";
-
 const VideoPlayer = (props) => {
   const [contentState, setContentState] = useContext(ContentStateContext); // Access the ContentState context
 
