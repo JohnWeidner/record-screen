@@ -42,13 +42,6 @@ var options = {
     background: path.join(__dirname, "src", "pages", "Background", "index.js"),
     contentScript: path.join(__dirname, "src", "pages", "Content", "index.jsx"),
     recorder: path.join(__dirname, "src", "pages", "Recorder", "index.jsx"),
-    recorderoffscreen: path.join(
-      __dirname,
-      "src",
-      "pages",
-      "RecorderOffscreen",
-      "index.jsx"
-    ),
     waveform: path.join(__dirname, "src", "pages", "Waveform", "index.jsx"),
     sandbox: path.join(__dirname, "src", "pages", "Sandbox", "index.jsx"),
     permissions: path.join(
@@ -59,7 +52,6 @@ var options = {
       "index.jsx"
     ),
     setup: path.join(__dirname, "src", "pages", "Setup", "index.jsx"),
-    playground: path.join(__dirname, "src", "pages", "Playground", "index.jsx"),
     editor: path.join(__dirname, "src", "pages", "Editor", "index.jsx"),
     download: path.join(__dirname, "src", "pages", "Download", "index.jsx"),
     editorfallback: path.join(
@@ -212,18 +204,6 @@ var options = {
         __dirname,
         "src",
         "pages",
-        "RecorderOffscreen",
-        "index.html"
-      ),
-      filename: "recorderoffscreen.html",
-      chunks: ["recorderoffscreen"],
-      cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(
-        __dirname,
-        "src",
-        "pages",
         "Permissions",
         "index.html"
       ),
@@ -247,18 +227,6 @@ var options = {
       template: path.join(__dirname, "src", "pages", "Setup", "index.html"),
       filename: "setup.html",
       chunks: ["setup"],
-      cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(
-        __dirname,
-        "src",
-        "pages",
-        "Playground",
-        "index.html"
-      ),
-      filename: "playground.html",
-      chunks: ["playground"],
       cache: false,
     }),
     new HtmlWebpackPlugin({
