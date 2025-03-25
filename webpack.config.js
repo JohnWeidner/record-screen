@@ -54,14 +54,6 @@ var options = {
     setup: path.join(__dirname, "src", "pages", "Setup", "index.jsx"),
     editor: path.join(__dirname, "src", "pages", "Editor", "index.jsx"),
     download: path.join(__dirname, "src", "pages", "Download", "index.jsx"),
-    editorfallback: path.join(
-      __dirname,
-      "src",
-      "pages",
-      "EditorFallback",
-      "index.jsx"
-    ),
-    backup: path.join(__dirname, "src", "pages", "Backup", "index.jsx"),
   },
 
   custom: {
@@ -240,25 +232,6 @@ var options = {
       filename: "download.html",
       chunks: ["download"],
       cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(
-        __dirname,
-        "src",
-        "pages",
-        "EditorFallback",
-        "index.html"
-      ),
-      filename: "editorfallback.html",
-      chunks: ["editorfallback"],
-      cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "pages", "Backup", "index.html"),
-      filename: "backup.html",
-      chunks: ["backup"],
-      cache: false,
-      favicon: path.join(__dirname, "src", "assets", "backup-favicon.ico"),
     }),
   ],
 };
