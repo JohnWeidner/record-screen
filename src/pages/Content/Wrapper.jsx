@@ -2,24 +2,15 @@ import React, { useContext, useRef, useEffect } from "react";
 
 // Components
 import PopupContainer from "./popup/PopupContainer";
-import Canvas from "./canvas/Canvas";
 import Countdown from "./countdown/Countdown";
 import Modal from "./modal/Modal";
 import Warning from "./warning/Warning";
-
-import Region from "./region/Region";
-
 // Using ShadowDOM
 import root from "react-shadow";
-
 // Import styles raw to add into the ShadowDOM
 // dist?
 import styles from "!raw-loader!./styles/app.css";
-
 // Utils
-import ZoomContainer from "./utils/ZoomContainer";
-import BlurTool from "./utils/BlurTool";
-import CursorModes from "./utils/CursorModes";
 
 // Context
 import { contentStateContext } from "./context/ContentState";
@@ -106,9 +97,6 @@ const Wrapper = () => {
           allow="camera *; microphone *; display-capture *"
         ></iframe>
       )}
-
-      {contentState.zoomEnabled && <ZoomContainer />}
-      <BlurTool />
       {contentState.showExtension || contentState.recording ? (
         <div>
           {!contentState.recording &&
@@ -155,8 +143,6 @@ const Wrapper = () => {
                 }}
               ></div>
             )}
-          <Canvas />
-          <CursorModes />
           <root.div
             className="root-container"
             id="screenity-root-container"
@@ -175,8 +161,6 @@ const Wrapper = () => {
           >
             <div className="container">
               <Warning />
-              {contentState.recordingType === "region" &&
-                contentState.customRegion && <Region />}
               {shadowRef.current && <Modal shadowRef={shadowRef} />}
               <Countdown />
               {contentState.showPopup && (

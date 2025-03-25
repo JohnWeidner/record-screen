@@ -4,8 +4,6 @@ import * as Select from "@radix-ui/react-select";
 import {
   DropdownIcon,
   CheckWhiteIcon,
-  CameraOnIcon,
-  CameraOffIcon,
   MicOnIcon,
   MicOffIcon,
 } from "../../images/popup/images";
@@ -258,16 +256,6 @@ const Dropdown = (props) => {
               clickedIcon.current = false;
             }}
           >
-            {props.type == "camera" && (
-              <img
-                src={
-                  contentState.defaultVideoInput === "none" ||
-                  !contentState.cameraActive
-                    ? CameraOffIcon
-                    : CameraOnIcon
-                }
-              />
-            )}
             {props.type == "mic" && (
               <img
                 src={
