@@ -155,8 +155,8 @@ const Wrapper = () => {
                 }}
               ></div>
             )}
-          <Canvas />
-          <CursorModes />
+          {/* <Canvas />
+          <CursorModes /> */}
           <root.div
             className="root-container"
             id="screenity-root-container"
