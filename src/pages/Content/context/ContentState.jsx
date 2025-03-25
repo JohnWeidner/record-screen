@@ -304,8 +304,6 @@ const ContentState = (props) => {
               },
               () => {},
               null,
-              chrome.i18n.getMessage("learnMoreDot"),
-              URL,
               true
             );
             return;
@@ -544,8 +542,6 @@ const ContentState = (props) => {
             noMorePermissions();
           },
           chrome.runtime.getURL("assets/helper/permissions.webp"),
-          chrome.i18n.getMessage("learnMoreDot"),
-          URL2,
           true,
           false
         );
@@ -635,7 +631,7 @@ const ContentState = (props) => {
     cameraFlipped: false,
     backgroundEffect: "blur",
     backgroundEffectsActive: false,
-    countdown: true,
+    countdown: false,
     showExtension: false,
     showPopup: false,
     blurMode: false,
@@ -1014,6 +1010,11 @@ const ContentState = (props) => {
         setContentState((prevContentState) => ({
           ...prevContentState,
           pendingRecording: false,
+        }));
+      } else if (request.type === "show-recording-popup") {
+        setContentState((prevContentState) => ({
+          ...prevContentState,
+          showPopup: !prevContentState.showPopup,
         }));
       }
     },
@@ -1509,7 +1510,7 @@ const ContentState = (props) => {
         }
 
         if (result.countdown === undefined || result.countdown === null) {
-          chrome.storage.local.set({ countdown: true });
+          chrome.storage.local.set({ countdown: false });
         }
 
         if (result.backupSetup === undefined || result.backupSetup === null) {

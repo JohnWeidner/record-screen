@@ -4,6 +4,7 @@ import styles from "../../styles/player/_HelpButton.module.scss";
 import { ReactSVG } from "react-svg";
 
 const HelpButton = () => {
+  return null
   return (
     <button
       className={styles.HelpButton}

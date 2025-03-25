@@ -321,5 +321,4 @@ if (env.NODE_ENV === "development") {
     ],
   };
 }
-
 module.exports = options;

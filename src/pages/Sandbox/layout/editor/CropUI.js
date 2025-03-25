@@ -92,28 +92,6 @@ const CropUI = (props) => {
         </div>
       </div>
 							*/}
-
-      <div className={styles.alert}>
-        <div className={styles.buttonLeft}>
-          <ReactSVG src={URL + "editor/icons/alert.svg"} />
-        </div>
-        <div className={styles.buttonMiddle}>
-          <div className={styles.buttonTitle}>
-            {chrome.i18n.getMessage("croppingInfoTitle")}
-          </div>
-          <div className={styles.buttonDescription}>
-            {chrome.i18n.getMessage("videoProcessingLabelDescription")}
-          </div>
-        </div>
-        <div
-          className={styles.buttonRight}
-          onClick={() => {
-            chrome.runtime.sendMessage({ type: "upgrade-info" });
-          }}
-        >
-          {chrome.i18n.getMessage("learnMoreLabel")}
-        </div>
-      </div>
       <div className={styles.section}>
         <div className={styles.sectionTitle}>
           {chrome.i18n.getMessage("sandboxCropTitle")}

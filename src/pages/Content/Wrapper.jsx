@@ -2,9 +2,6 @@ import React, { useContext, useRef, useEffect } from "react";
 
 // Components
 import PopupContainer from "./popup/PopupContainer";
-import Toolbar from "./toolbar/Toolbar";
-import Camera from "./camera/Camera";
-import CameraOnly from "./camera-only/CameraOnly";
 import Canvas from "./canvas/Canvas";
 import Countdown from "./countdown/Countdown";
 import Modal from "./modal/Modal";
@@ -26,6 +23,7 @@ import CursorModes from "./utils/CursorModes";
 
 // Context
 import { contentStateContext } from "./context/ContentState";
+import PopupRecording from "./popup/PopupRecording";
 
 const Wrapper = () => {
   const [contentState, setContentState] = useContext(contentStateContext);
@@ -181,17 +179,14 @@ const Wrapper = () => {
                 contentState.customRegion && <Region />}
               {shadowRef.current && <Modal shadowRef={shadowRef} />}
               <Countdown />
-              {contentState.recordingType != "camera" && (
-                <Camera shadowRef={shadowRef} />
-              )}
-              {contentState.recordingType === "camera" && (
-                <CameraOnly shadowRef={shadowRef} />
-              )}
-              {!(contentState.hideToolbar && contentState.hideUI) && (
-                <Toolbar />
-              )}
               {contentState.showPopup && (
-                <PopupContainer shadowRef={shadowRef} />
+                <>
+                  {contentState.recording ? (
+                    <PopupRecording />
+                  ) : (
+                    <PopupContainer shadowRef={shadowRef} />
+                  )}
+                </>
               )}
             </div>
             <style type="text/css">{styles}</style>

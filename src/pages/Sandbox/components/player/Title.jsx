@@ -90,18 +90,6 @@ const Title = () => {
                 styles={{ display: "inline-block" }}
               />
             </h1>
-            <div
-              className={styles.shareButton}
-              onClick={() => {
-                setShowShare(true);
-              }}
-            >
-              <ReactSVG
-                src={URL + "editor/icons/link.svg"}
-                className={styles.shareIcon}
-              />
-              {chrome.i18n.getMessage("shareSandboxButton")}
-            </div>
           </>
         ) : (
           <input

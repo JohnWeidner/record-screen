@@ -231,11 +231,11 @@ const RightPanel = () => {
 
   return (
     <div className={styles.panel}>
-      {contentState.mode === "audio" && <AudioUI />}
-      {contentState.mode === "crop" && <CropUI />}
+      {/* {contentState.mode === "audio" && <AudioUI />}
+      {contentState.mode === "crop" && <CropUI />} */}
       {contentState.mode === "player" && (
         <div>
-          {!contentState.fallback && contentState.offline && (
+          {/* {!contentState.fallback && contentState.offline && (
             <div className={styles.alert}>
               <div className={styles.buttonLeft}>
                 <ReactSVG src={URL + "editor/icons/no-internet.svg"} />
@@ -462,7 +462,7 @@ const RightPanel = () => {
                 }
               >
                 <div className={styles.buttonLeft}>
-                  <ReactSVG src={URL + "editor/icons/audio.svg"} />
+                  <ReactSVG src={URL + "editor/icons/audio.svg"} /> 
                 </div>
                 <div className={styles.buttonMiddle}>
                   <div className={styles.buttonTitle}>
@@ -486,8 +486,8 @@ const RightPanel = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={styles.section}>
+          </div> */}
+          {/* <div className={styles.section}>
             <div className={styles.sectionTitle}>
               {chrome.i18n.getMessage("sandboxSaveTitle")}
             </div>
@@ -532,11 +532,11 @@ const RightPanel = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className={styles.section}>
-            <div className={styles.sectionTitle}>
+            {/* <div className={styles.sectionTitle}>
               {chrome.i18n.getMessage("sandboxExportTitle")}
-            </div>
+            </div> */}
             <div className={styles.buttonWrap}>
               {contentState.fallback && (
                 <div
@@ -563,7 +563,7 @@ const RightPanel = () => {
                   </div>
                 </div>
               )}
-              <div
+              {/* <div
                 role="button"
                 className={styles.button}
                 onClick={() => {
@@ -602,7 +602,7 @@ const RightPanel = () => {
                 <div className={styles.buttonRight}>
                   <ReactSVG src={URL + "editor/icons/right-arrow.svg"} />
                 </div>
-              </div>
+              </div> */}
               {!contentState.fallback && (
                 <div
                   role="button"
@@ -632,7 +632,7 @@ const RightPanel = () => {
                   </div>
                 </div>
               )}
-              <div
+              {/* <div
                 role="button"
                 className={styles.button}
                 onClick={() => {
@@ -671,61 +671,10 @@ const RightPanel = () => {
                 <div className={styles.buttonRight}>
                   <ReactSVG src={URL + "editor/icons/right-arrow.svg"} />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className={styles.section}>
-            {/* Create an advanced section with a button to send logs and to download raw video file as a backup */}
-            <div className={styles.sectionTitle}>
-              {chrome.i18n.getMessage("sandboxAdvancedTitle")}
-            </div>
-            <div className={styles.buttonWrap}>
-              <div
-                role="button"
-                className={styles.button}
-                onClick={() => {
-                  handleRawRecording();
-                }}
-              >
-                <div className={styles.buttonLeft}>
-                  <ReactSVG src={URL + "editor/icons/download.svg"} />
-                </div>
-                <div className={styles.buttonMiddle}>
-                  <div className={styles.buttonTitle}>
-                    {chrome.i18n.getMessage("rawRecordingButtonTitle")}
-                  </div>
-                  <div className={styles.buttonDescription}>
-                    {chrome.i18n.getMessage("rawRecordingButtonDescription")}
-                  </div>
-                </div>
-                <div className={styles.buttonRight}>
-                  <ReactSVG src={URL + "editor/icons/right-arrow.svg"} />
-                </div>
-              </div>
-              <div
-                role="button"
-                className={styles.button}
-                onClick={() => {
-                  handleTroubleshooting();
-                }}
-              >
-                <div className={styles.buttonLeft}>
-                  <ReactSVG src={URL + "editor/icons/flag.svg"} />
-                </div>
-                <div className={styles.buttonMiddle}>
-                  <div className={styles.buttonTitle}>
-                    {chrome.i18n.getMessage("troubleshootButtonTitle")}
-                  </div>
-                  <div className={styles.buttonDescription}>
-                    {chrome.i18n.getMessage("troubleshootButtonDescription")}
-                  </div>
-                </div>
-                <div className={styles.buttonRight}>
-                  <ReactSVG src={URL + "editor/icons/right-arrow.svg"} />
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       )}
     </div>

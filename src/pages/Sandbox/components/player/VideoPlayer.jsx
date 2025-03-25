@@ -5,6 +5,7 @@ import { ContentStateContext } from "../../context/ContentState"; // Import the 
 
 // Components
 import Title from "./Title";
+import RightPanel from "../../layout/player/RightPanel";
 
 const VideoPlayer = (props) => {
   const [contentState, setContentState] = useContext(ContentStateContext); // Access the ContentState context
@@ -173,16 +174,68 @@ const VideoPlayer = (props) => {
             options={options}
           />
         )}
-        {contentState.mode === "player" && <Title />}
+        {/* {contentState.mode === "player" && <Title />} */}
+        {contentState.fallback && (
+          <div
+            role="button"
+            onClick={() => contentState.downloadWEBM()}
+            disabled={contentState.isFfmpegRunning}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              textAlign: "center",
+              margin: "10px 0",
+              display: "inline-block",
+            }}
+          >
+            <div>
+              <div>
+                {contentState.downloadingWEBM
+                  ? chrome.i18n.getMessage("downloadingLabel")
+                  : chrome.i18n.getMessage("downloadWEBMButtonTitle")}
+              </div>
+            </div>
+          </div>
+        )}
+        {!contentState.fallback && (
+          <div
+            role="button"
+            onClick={() => contentState.downloadWEBM()}
+            disabled={contentState.isFfmpegRunning}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#28a745",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+              textAlign: "center",
+              margin: "10px 0",
+              display: "inline-block",
+            }}
+          >
+            <div>
+              <div>
+                {contentState.downloadingWEBM
+                  ? chrome.i18n.getMessage("downloadingLabel")
+                  : chrome.i18n.getMessage("downloadWEBMButtonTitle")}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <style>
         {`
-					@media (max-width: 900px) {
-						.videoPlayer {
-							position: relative!important;
-						}
-					}
-					`}
+          @media (max-width: 900px) {
+            .videoPlayer {
+              position: relative!important;
+            }
+          }
+        `}
       </style>
     </div>
   );

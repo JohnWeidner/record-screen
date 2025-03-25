@@ -43,16 +43,11 @@ const Settings = () => {
     >
       <Collapsible.Trigger className="CollapsibleTrigger">
         <div className="CollapsibleLabel">
-          ✨ {chrome.i18n.getMessage("showMoreOptionsLabel")}{" "}
+          {chrome.i18n.getMessage("showMoreOptionsLabel")}{" "}
           <img src={DropdownIcon} />
         </div>
       </Collapsible.Trigger>
       <Collapsible.Content>
-        <Switch
-          label={chrome.i18n.getMessage("hideToolbarLabel")}
-          name="hideUI"
-          value="hideUI"
-        />
         <Switch
           label={chrome.i18n.getMessage("countdownLabel")}
           name="countdown"
@@ -64,28 +59,6 @@ const Settings = () => {
           value="alarm"
         />
         {contentState.alarm && <TimeSetter />}
-        <Switch
-          label={chrome.i18n.getMessage("micReminderPopup")}
-          name="askMicrophone"
-          value="askMicrophone"
-        />
-        {contentState.recordingType != "region" &&
-          contentState.recordingType != "camera" &&
-          (chromeVersion === null || chromeVersion >= 109) && (
-            <Switch
-              label={chrome.i18n.getMessage("stayInPagePopup")}
-              name="offscreenRecording"
-              value="offscreenRecording"
-            />
-          )}
-        <Switch
-          label={
-            chrome.i18n.getMessage("zoomToPointPopup") + " (" + shortcut + ")"
-          }
-          name="zoomEnabled"
-          value="zoomEnabled"
-          experimental={true}
-        />
       </Collapsible.Content>
     </Collapsible.Root>
   );

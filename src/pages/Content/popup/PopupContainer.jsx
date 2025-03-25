@@ -306,19 +306,6 @@ const PopupContainer = (props) => {
               open ? "popup-controls open" : "popup-controls drag-area"
             }
           >
-            <SettingsMenu
-              shadowRef={props.shadowRef}
-              open={open}
-              setOpen={setOpen}
-            />
-            <div
-              style={{ marginBottom: "-4px", cursor: "pointer" }}
-              onClick={() => {
-                window.open(URL, "_blank");
-              }}
-            >
-              <HelpIconPopup />
-            </div>
             <div
               className="popup-control popup-close"
               onClick={() => {
@@ -357,54 +344,17 @@ const PopupContainer = (props) => {
                     tabIndex={0}
                   >
                     <div className="TabsTriggerIcon">
-                      <img
-                        src={
-                          tab === "record" ? RecordTabActive : RecordTabInactive
-                        }
-                      />
+                      <img src={RecordTabActive} />
                     </div>
                     {chrome.i18n.getMessage("recordTab")}
-                  </Tabs.Trigger>
-                  <Tabs.Trigger
-                    className="TabsTrigger tl"
-                    value="dashboard"
-                    ref={videoTabRef}
-                    tabIndex={0}
-                  >
-                    <div className="TabsTriggerIcon">
-                      <img
-                        src={
-                          tab === "dashboard"
-                            ? VideoTabActive
-                            : VideoTabInactive
-                        }
-                      />
-                    </div>
-                    {chrome.i18n.getMessage("videosTab")}
                   </Tabs.Trigger>
                 </Tabs.List>
                 <Tabs.Content className="TabsContent tl" value="record">
                   <RecordingTab shadowRef={props.shadowRef} />
                 </Tabs.Content>
-                <Tabs.Content className="TabsContent tl" value="dashboard">
-                  <VideosTab />
-                </Tabs.Content>
               </Tabs.Root>
             )}
           </div>
-          {contentState.settingsOpen && (
-            <div
-              className="HelpSection"
-              onClick={() => {
-                window.open(URL, "_blank");
-              }}
-            >
-              <span className="HelpIcon">
-                <HelpIconPopup />
-              </span>
-              {chrome.i18n.getMessage("helpPopup")}
-            </div>
-          )}
         </div>
       </Rnd>
     </div>

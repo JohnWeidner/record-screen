@@ -17,12 +17,12 @@ const Player = () => {
 
   return (
     <div className={styles.layout}>
-      {contentState.mode === "crop" && <CropNav />}
+      {/* {contentState.mode === "crop" && <CropNav />}
       {contentState.mode === "player" && <PlayerNav />}
-      {contentState.mode === "audio" && <AudioNav />}
+      {contentState.mode === "audio" && <AudioNav />} */}
       <div className={styles.content}>
         <Content />
-        <RightPanel />
+        {/* <RightPanel /> */}
       </div>
     </div>
   );

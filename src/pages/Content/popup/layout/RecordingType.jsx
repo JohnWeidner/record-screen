@@ -5,11 +5,8 @@ import Switch from "../components/Switch";
 import RegionDimensions from "../components/RegionDimensions";
 import Settings from "./Settings";
 import { contentStateContext } from "../../context/ContentState";
-import { CameraOffBlue, MicOffBlue } from "../../images/popup/images";
-
-import BackgroundEffects from "../components/BackgroundEffects";
-
-import { AlertIcon, TimeIcon, NoInternet } from "../../toolbar/components/SVG";
+import { MicOffBlue } from "../../images/popup/images";
+import { AlertIcon, TimeIcon } from "../../toolbar/components/SVG";
 
 const RecordingType = (props) => {
   const [contentState, setContentState] = useContext(contentStateContext);
@@ -23,8 +20,6 @@ const RecordingType = (props) => {
   );
 
   const buttonRef = useRef(null);
-  const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0;
-
   useEffect(() => {
     const locale = chrome.i18n.getMessage("@@ui_locale");
     if (!locale.includes("en")) {
@@ -59,7 +54,11 @@ const RecordingType = (props) => {
 
   // Start recording
   const startStreaming = () => {
-    contentState.startStreaming();
+    if (contentState.microphonePermission) {
+      contentState.startStreaming();
+    } else {
+      alert("Please make sure a microphone is available.");
+    }
   };
 
   useEffect(() => {
@@ -106,22 +105,6 @@ const RecordingType = (props) => {
           </div>
         </div>
       )}
-      {/*contentState.offline && (
-        <div className="popup-warning">
-          <div className="popup-warning-left">
-            <NoInternet />
-          </div>
-          <div className="popup-warning-middle">
-            <div className="popup-warning-title">You are currently offline</div>
-            <div className="popup-warning-description">
-              Some features are unavailable
-            </div>
-          </div>
-          <div className="popup-warning-right">
-            <a href="#">Try again</a>
-          </div>
-        </div>
-			)*/}
       {!cropActive &&
         contentState.recordingType === "region" &&
         !contentState.offline && (
@@ -149,56 +132,6 @@ const RecordingType = (props) => {
             </div>
           </div>
         )}
-      {!contentState.cameraPermission && (
-        <button
-          className="permission-button"
-          onClick={() => {
-            if (typeof contentState.openModal === "function") {
-              contentState.openModal(
-                chrome.i18n.getMessage("permissionsModalTitle"),
-                chrome.i18n.getMessage("permissionsModalDescription"),
-                chrome.i18n.getMessage("permissionsModalReview"),
-                chrome.i18n.getMessage("permissionsModalDismiss"),
-                () => {
-                  chrome.runtime.sendMessage({
-                    type: "extension-media-permissions",
-                  });
-                },
-                () => {},
-                chrome.runtime.getURL("assets/helper/permissions.webp"),
-                chrome.i18n.getMessage("learnMoreDot"),
-                URL2,
-                true,
-                false
-              );
-            }
-          }}
-        >
-          <img src={CameraOffBlue} />
-          <span>{chrome.i18n.getMessage("allowCameraAccessButton")}</span>
-        </button>
-      )}
-      {contentState.cameraPermission && (
-        <Dropdown type="camera" shadowRef={props.shadowRef} />
-      )}
-      {contentState.cameraPermission &&
-        contentState.defaultVideoInput != "none" &&
-        contentState.cameraActive && (
-          <div>
-            <Switch
-              label={chrome.i18n.getMessage("flipCameraLabel")}
-              name="flip-camera"
-              value="cameraFlipped"
-            />
-            <Switch
-              label={chrome.i18n.getMessage("backgroundEffectsLabel")}
-              name="background-effects-active"
-              value="backgroundEffectsActive"
-            />
-            {contentState.backgroundEffectsActive && <BackgroundEffects />}
-          </div>
-        )}
-
       {!contentState.microphonePermission && (
         <button
           className="permission-button"
@@ -216,8 +149,6 @@ const RecordingType = (props) => {
                 },
                 () => {},
                 chrome.runtime.getURL("assets/helper/permissions.webp"),
-                chrome.i18n.getMessage("learnMoreDot"),
-                URL2,
                 true,
                 false
               );
@@ -246,15 +177,6 @@ const RecordingType = (props) => {
             allow="camera; microphone"
             src={chrome.runtime.getURL("waveform.html")}
           ></iframe>
-          <Switch
-            label={
-              isMac
-                ? chrome.i18n.getMessage("pushToTalkLabel") + " (⌥⇧U)"
-                : chrome.i18n.getMessage("pushToTalkLabel") + " (Alt⇧U)"
-            }
-            name="pushToTalk"
-            value="pushToTalk"
-          />
         </div>
       )}
       {contentState.recordingType === "region" && cropActive && (
@@ -279,6 +201,9 @@ const RecordingType = (props) => {
           ((!contentState.cameraPermission || !contentState.cameraActive) &&
             contentState.recordingType === "camera")
         }
+        style={{
+          background: "#ff5400cf !important",
+        }}
       >
         {contentState.alarm && contentState.alarmTime > 0 && (
           <div className="alarm-time-button">

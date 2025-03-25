@@ -11,6 +11,11 @@ delete config.custom;
 
 config.mode = "production";
 
-webpack(config, function (err) {
-  if (err) throw err;
+webpack(config, function (err, stats) {
+  if (err || stats.hasErrors()) {
+    console.error(err || stats.toString());
+    return;
+  }
+
+  console.log("✅ Build completed successfully.");
 });

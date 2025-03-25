@@ -11,123 +11,28 @@ const Recorder = () => {
   }, []);
 
   const checkPermissions = async () => {
-    // Individually check the camera and microphone permissions using the Permissions API. Then enumerate devices respectively.
     try {
-      const cameraPermission = await navigator.permissions.query({
-        name: "camera",
-      });
       const microphonePermission = await navigator.permissions.query({
         name: "microphone",
       });
-
-      cameraPermission.onchange = () => {
-        checkPermissions();
-      };
 
       microphonePermission.onchange = () => {
         checkPermissions();
       };
 
-      // If the permissions are granted, enumerate devices
-      if (
-        cameraPermission.state === "granted" ||
-        microphonePermission.state === "granted"
-      ) {
-        enumerateDevices(
-          cameraPermission.state === "granted",
-          microphonePermission.state === "granted"
-        );
+      if (microphonePermission.state === "granted") {
+        enumerateDevices(false, true); // chỉ yêu cầu mic
       } else {
-        // Post message to parent window
         window.parent.postMessage(
           {
             type: "screenity-permissions",
             success: false,
-            error: err.name,
+            error: "microphone-permission-denied",
           },
           "*"
         );
-        // sendResponse({ success: false, error: err.name });
       }
     } catch (err) {
-      enumerateDevices();
-    }
-  };
-
-  // Enumerate devices
-  const enumerateDevices = async (camGranted = true, micGranted = true) => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: micGranted,
-        video: camGranted,
-      });
-
-      const devicesInfo = await navigator.mediaDevices.enumerateDevices();
-
-      let audioinput = [];
-      let audiooutput = [];
-      let videoinput = [];
-
-      if (micGranted) {
-        // Filter by audio input
-        audioinput = devicesInfo
-          .filter((device) => device.kind === "audioinput")
-          .map((device) => ({
-            deviceId: device.deviceId,
-            label: device.label,
-          }));
-
-        // Filter by audio output and extract relevant properties
-        audiooutput = devicesInfo
-          .filter((device) => device.kind === "audiooutput")
-          .map((device) => ({
-            deviceId: device.deviceId,
-            label: device.label,
-          }));
-      }
-
-      if (camGranted) {
-        // Filter by video input and extract relevant properties
-        videoinput = devicesInfo
-          .filter((device) => device.kind === "videoinput")
-          .map((device) => ({
-            deviceId: device.deviceId,
-            label: device.label,
-          }));
-      }
-
-      // Save in Chrome local storage
-      chrome.storage.local.set({
-        // Set available devices
-        audioinput: audioinput,
-        audiooutput: audiooutput,
-        videoinput: videoinput,
-        cameraPermission: camGranted,
-        microphonePermission: micGranted,
-      });
-
-      // Post message to parent window
-      window.parent.postMessage(
-        {
-          type: "screenity-permissions",
-          success: true,
-          audioinput: audioinput,
-          audiooutput: audiooutput,
-          videoinput: videoinput,
-          cameraPermission: camGranted,
-          microphonePermission: micGranted,
-        },
-        "*"
-      );
-
-      //sendResponse({ success: true, audioinput, audiooutput, videoinput });
-
-      // End the stream
-      stream.getTracks().forEach(function (track) {
-        track.stop();
-      });
-    } catch (err) {
-      // Post message to parent window
       window.parent.postMessage(
         {
           type: "screenity-permissions",
@@ -136,9 +41,68 @@ const Recorder = () => {
         },
         "*"
       );
-      //sendResponse({ success: false, error: err.name });
     }
   };
+
+  // Enumerate devices
+  const enumerateDevices = async (_camGranted = false, micGranted = true) => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: micGranted,
+        video: false, // camera bị tắt hoàn toàn
+      });
+  
+      const devicesInfo = await navigator.mediaDevices.enumerateDevices();
+  
+      const audioinput = micGranted
+        ? devicesInfo
+            .filter((d) => d.kind === "audioinput")
+            .map((d) => ({ deviceId: d.deviceId, label: d.label }))
+        : [];
+  
+      const audiooutput = micGranted
+        ? devicesInfo
+            .filter((d) => d.kind === "audiooutput")
+            .map((d) => ({ deviceId: d.deviceId, label: d.label }))
+        : [];
+  
+      // Không lấy camera
+      const videoinput = [];
+  
+      chrome.storage.local.set({
+        audioinput,
+        audiooutput,
+        videoinput,
+        cameraPermission: false, // gửi false rõ ràng
+        microphonePermission: micGranted,
+      });
+  
+      window.parent.postMessage(
+        {
+          type: "screenity-permissions",
+          success: true,
+          audioinput,
+          audiooutput,
+          videoinput,
+          cameraPermission: false,
+          microphonePermission: micGranted,
+        },
+        "*"
+      );
+  
+      stream.getTracks().forEach((track) => track.stop());
+    } catch (err) {
+      window.parent.postMessage(
+        {
+          type: "screenity-permissions",
+          success: false,
+          error: err.name,
+        },
+        "*"
+      );
+    }
+  };
+  
 
   const onMessage = (message) => {
     if (message.type === "screenity-get-permissions") {

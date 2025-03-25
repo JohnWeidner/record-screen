@@ -572,19 +572,8 @@ chrome.action.onClicked.addListener(async (tab) => {
   // Check if recording
   const { recording } = await chrome.storage.local.get(["recording"]);
   if (recording) {
-    stopRecording();
-    sendMessageRecord({ type: "stop-recording-tab" });
-    const { activeTab } = await chrome.storage.local.get(["activeTab"]);
-
-    // Check if actual tab
-    chrome.tabs.get(activeTab, (t) => {
-      if (t) {
-        sendMessageTab(activeTab, { type: "stop-recording-tab" });
-      } else {
-        sendMessageTab(tab.id, { type: "stop-recording-tab" });
-        chrome.storage.local.set({ activeTab: tab.id });
-      }
-    });
+    chrome.tabs.sendMessage(tab.id, { type: "show-recording-popup" });
+    return;
   } else {
     // Check if it's possible to inject into content (not a chrome:// page, new tab, etc)
     if (

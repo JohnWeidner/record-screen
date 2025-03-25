@@ -22,16 +22,13 @@ const PlayerNav = () => {
     <div className={styles.nav}>
       <div className={styles.navWrap}>
         <div
-          onClick={() => {
-            chrome.runtime.sendMessage({ type: "open-home" });
-          }}
           aria-label="home"
           className={styles.navLeft}
         >
-          <img src={URL + "editor/logo.svg"} alt="Screenity Logo" />
+          <img src={URL + "editor/temp-logo.png"} alt="Recorder" />
         </div>
         <div className={styles.navRight}>
-          <button
+          {/* <button
             className="button simpleButton blueButton"
             onClick={() => {
               chrome.runtime.sendMessage({ type: "open-help" });
@@ -48,7 +45,7 @@ const PlayerNav = () => {
           >
             <ReactSVG src={HeartIcon} />{" "}
             {chrome.i18n.getMessage("followForUpdates")}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
