@@ -147,6 +147,7 @@ const ContentState = (props) => {
     setContentState((prevContentState) => ({
       ...prevContentState,
       paused: false,
+      showPopup: false,
     }));
   });
 
