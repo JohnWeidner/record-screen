@@ -1021,19 +1021,6 @@ chrome.runtime.onInstalled.addListener(async (details) => {
     chrome.storage.local.clear();
 
     const locale = chrome.i18n.getMessage("@@ui_locale");
-    if (locale.includes("en")) {
-      chrome.runtime.setUninstallURL(
-        "https://tally.so/r/w8Zro5?version=" +
-          chrome.runtime.getManifest().version
-      );
-    } else {
-      chrome.runtime.setUninstallURL(
-        "http://translate.google.com/translate?js=n&sl=auto&tl=" +
-          locale +
-          "&u=https://tally.so/r/w8Zro5?version=" +
-          chrome.runtime.getManifest().version
-      );
-    }
     chrome.storage.local.set({ firstTime: true });
     chrome.tabs.create({
       url: "setup.html",
@@ -1045,20 +1032,6 @@ chrome.runtime.onInstalled.addListener(async (details) => {
       chrome.storage.local.set({ updatingFromOld: true });
     } else {
       chrome.storage.local.set({ updatingFromOld: false });
-    }
-    const locale = chrome.i18n.getMessage("@@ui_locale");
-    if (locale.includes("en")) {
-      chrome.runtime.setUninstallURL(
-        "https://tally.so/r/3Ex6kX?version=" +
-          chrome.runtime.getManifest().version
-      );
-    } else {
-      chrome.runtime.setUninstallURL(
-        "http://translate.google.com/translate?js=n&sl=auto&tl=" +
-          locale +
-          "&u=https://tally.so/r/3Ex6kX?version=" +
-          chrome.runtime.getManifest().version
-      );
     }
   }
   // Check chrome version, if 109 or below, disable backups

@@ -1013,6 +1013,9 @@ const ContentState = (props) => {
           pendingRecording: false,
         }));
       } else if (request.type === "show-recording-popup") {
+        if (!contentState.paused) {
+          pauseRecording();
+        }
         setContentState((prevContentState) => ({
           ...prevContentState,
           showPopup: !prevContentState.showPopup,

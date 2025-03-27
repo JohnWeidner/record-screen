@@ -134,14 +134,25 @@ const VideoPlayer = (props) => {
         ) {
           bannerRef.current = document.createElement("div");
           bannerRef.current.classList.add("videoBanner");
-          bannerRef.current.innerHTML =
-            "<img src='" +
-            chrome.runtime.getURL("assets/editor/icons/alert-white.svg") +
-            "'/> <span>" +
-            chrome.i18n.getMessage("processingBannerEditor") +
-            "</span>";
-
-          document.querySelector(".plyr--video").appendChild(bannerRef.current);
+          bannerRef.current.innerHTML = `
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background-color: rgba(255, 255, 255, 0.28);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: white;
+              font-size: 14px;
+              z-index: 19191919191919;
+            ">
+              Video is being processed. Please wait...
+            </div>
+            `;
+          document.querySelector("body").appendChild(bannerRef.current);
         }
       }
     };

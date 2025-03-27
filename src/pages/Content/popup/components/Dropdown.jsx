@@ -304,11 +304,11 @@ const Dropdown = (props) => {
           <Select.ScrollUpButton className="SelectScrollButton"></Select.ScrollUpButton>
           <Select.Viewport className="SelectViewport">
             <Select.Group>
-              <SelectItem value="none">
-                {props.type == "camera"
-                  ? chrome.i18n.getMessage("noCameraDropdownLabel")
-                  : chrome.i18n.getMessage("noMicrophoneDropdownLabel")}
-              </SelectItem>
+              {props.type === "camera" && (
+                <SelectItem value="none">
+                  {chrome.i18n.getMessage("noCameraDropdownLabel")}
+                </SelectItem>
+              )}
             </Select.Group>
             {props.type == "camera" && contentState.videoInput.length > 0 && (
               <Select.Separator className="SelectSeparator" />
