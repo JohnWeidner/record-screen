@@ -145,7 +145,7 @@ const VideoPlayer = (props) => {
               display: flex;
               justify-content: center;
               align-items: flex-start;
-              color: white;
+              color: #000;
               font-size: 18px;
               z-index: 19191919191919;
               padding-top: 80px
