@@ -144,10 +144,11 @@ const VideoPlayer = (props) => {
               background-color: rgba(255, 255, 255, 0.28);
               display: flex;
               justify-content: center;
-              align-items: center;
+              align-items: flex-start;
               color: white;
-              font-size: 14px;
+              font-size: 18px;
               z-index: 19191919191919;
+              padding-top: 80px
             ">
               Video is being processed. Please wait...
             </div>
