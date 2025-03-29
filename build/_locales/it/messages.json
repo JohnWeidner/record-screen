@@ -778,7 +778,7 @@
     "description": "Titolo del modalità di errore di streaming"
   },
   "streamErrorModalDescription": {
-    "message": "Si è verificato un errore durante l'avvio della registrazione. Riavvia il tuo browser e riprova. Se il problema persiste, contattaci all'indirizzo support@screenity.io.",
+    "message": "Si è verificato un errore durante l'avvio della registrazione. Riavvia il tuo browser e riprova. Se il problema persiste, contattaci all'indirizzo support@userbob.com.",
     "description": "Descrizione del modalità di errore di streaming"
   },
   "highestQuality": {
@@ -874,7 +874,7 @@
     "description": "Titolo del modulo di risoluzione dei problemi"
   },
   "troubleshootModalDescription": {
-    "message": "Dopo il download, invia il file a support@screenity.io con qualsiasi informazione pertinente. Utilizzeremo questi dati per aiutarti a risolvere eventuali problemi che riscontri con l'estensione e, se possibile, recuperare il tuo video.",
+    "message": "Dopo il download, invia il file a support@userbob.com con qualsiasi informazione pertinente. Utilizzeremo questi dati per aiutarti a risolvere eventuali problemi che riscontri con l'estensione e, se possibile, recuperare il tuo video.",
     "description": "Descrizione del modulo di risoluzione dei problemi"
   },
   "troubleshootModalButton": {

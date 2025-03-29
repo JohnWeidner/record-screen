@@ -778,7 +778,7 @@
     "description": "Título del modal de error de transmisión"
   },
   "streamErrorModalDescription": {
-    "message": "Hubo un error al iniciar la grabación. Reinicia tu navegador e inténtalo de nuevo. Si el problema persiste, por favor, contáctanos en support@screenity.io.",
+    "message": "Hubo un error al iniciar la grabación. Reinicia tu navegador e inténtalo de nuevo. Si el problema persiste, por favor, contáctanos en support@userbob.com.",
     "description": "Descripción del modal de error de transmisión"
   },
   "highestQuality": {
@@ -874,7 +874,7 @@
     "description": "Título del modal de solución de problemas"
   },
   "troubleshootModalDescription": {
-    "message": "Después de descargar, envía el archivo a support@screenity.io con cualquier información relevante. Utilizaremos estos datos para ayudarte a solucionar cualquier problema que tengas con la extensión y, si es posible, recuperar tu video.",
+    "message": "Después de descargar, envía el archivo a support@userbob.com con cualquier información relevante. Utilizaremos estos datos para ayudarte a solucionar cualquier problema que tengas con la extensión y, si es posible, recuperar tu video.",
     "description": "Descripción del modal de solución de problemas"
   },
   "troubleshootModalButton": {

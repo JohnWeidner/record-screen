@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "Screenity - Screen Recorder & Annotation Tool",
+    "message": "UserBob Screen Recorder",
     "description": "Extension name"
   },
   "extDesc": {
@@ -672,7 +672,7 @@
     "description": "Microphone muted modal cancel"
   },
   "setupTitle": {
-    "message": "Get started with Screenity in three simple steps:",
+    "message": "Get started using the UserBob Screen Recorder in three simple steps:",
     "description": "Set up steps title"
   },
   "setupStep1Before": {
@@ -696,7 +696,7 @@
     "description": "Set up step 3, before the icon. It needs a space at the end."
   },
   "setupStep3After": {
-    "message": " Screenity icon to start",
+    "message": " UserBob icon to start",
     "description": "Set up step 3, after the icon. It needs a space at the beginning."
   },
   "setupCompleteTitle": {
@@ -776,7 +776,7 @@
     "description": "Stream error modal title"
   },
   "streamErrorModalDescription": {
-    "message": "Looks like there was an error starting the recording. Restart your browser and try again. If the issue persists, please contact us at support@screenity.io.",
+    "message": "Looks like there was an error starting the recording. Restart your browser and try again. If the issue persists, please contact us at support@userbob.com.",
     "description": "Stream error modal description"
   },
   "highestQuality": {
@@ -872,7 +872,7 @@
     "description": "Troubleshoot modal title"
   },
   "troubleshootModalDescription": {
-    "message": "After downloading, send the file to support@screenity.io with any relevant information. We will use this data to help you troubleshoot any issues you are having with the extension, and recover your video if possible.",
+    "message": "After downloading, send the file to support@userbob.com with any relevant information. We will use this data to help you troubleshoot any issues you are having with the extension, and recover your video if possible.",
     "description": "Troubleshoot modal description"
   },
   "troubleshootModalButton": {

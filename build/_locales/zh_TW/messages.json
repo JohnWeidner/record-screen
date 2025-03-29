@@ -776,7 +776,7 @@
     "description": "Stream error modal title"
   },
   "streamErrorModalDescription": {
-    "message": "開始錄製時似乎發生了錯誤。請重新開啟您的瀏覽器後再試一次。如果問題還是存在，請寄信到 support@screenity.io 與我們聯繫。",
+    "message": "開始錄製時似乎發生了錯誤。請重新開啟您的瀏覽器後再試一次。如果問題還是存在，請寄信到 support@userbob.com 與我們聯繫。",
     "description": "Stream error modal description"
   },
   "highestQuality": {
@@ -872,7 +872,7 @@
     "description": "Troubleshoot modal title"
   },
   "troubleshootModalDescription": {
-    "message": "下載之後請將檔案寄到 support@screenity.io，如果有相關的資訊也請包含在信件中。我們會使用該資料幫助您排解使用這個擴充元件的問題，並試著復原您的影片。",
+    "message": "下載之後請將檔案寄到 support@userbob.com，如果有相關的資訊也請包含在信件中。我們會使用該資料幫助您排解使用這個擴充元件的問題，並試著復原您的影片。",
     "description": "Troubleshoot modal description"
   },
   "troubleshootModalButton": {
