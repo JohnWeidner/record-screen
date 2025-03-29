@@ -107,10 +107,6 @@
     "message": "Countdown",
     "description": "Countdown label"
   },
-  "alarmLabel": {
-    "message": "Set a time limit",
-    "description": "Alarm label"
-  },
   "blurTypeLabel": {
     "message": "Blur",
     "description": "Blur background label"

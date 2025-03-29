@@ -53,12 +53,6 @@ const Settings = () => {
           name="countdown"
           value="countdown"
         />
-        <Switch
-          label={chrome.i18n.getMessage("alarmLabel")}
-          name="alarm"
-          value="alarm"
-        />
-        {contentState.alarm && <TimeSetter />}
       </Collapsible.Content>
     </Collapsible.Root>
   );

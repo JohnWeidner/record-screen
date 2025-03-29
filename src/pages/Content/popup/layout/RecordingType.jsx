@@ -128,12 +128,6 @@ const RecordingType = (props) => {
           background: "#ff5400cf !important",
         }}
       >
-        {contentState.alarm && contentState.alarmTime > 0 && (
-          <div className="alarm-time-button">
-            <TimeIcon />
-            {time}
-          </div>
-        )}
         <span className="main-button-label">
           {contentState.pendingRecording
             ? chrome.i18n.getMessage("recordButtonInProgressLabel")

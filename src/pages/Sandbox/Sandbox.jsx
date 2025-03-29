@@ -113,7 +113,6 @@ const Sandbox = () => {
         <div className="wrap">
           <img className="logo" src="/assets/logo-text.svg" />
           <div className="middle-area">
-            <img src="/assets/record-tab-active.svg" />
             <div className="title">
               {chrome.i18n.getMessage("sandboxProgressTitle") +
                 " " +

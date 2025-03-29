@@ -684,7 +684,6 @@ const Recorder = () => {
         src={chrome.runtime.getURL("assets/logo-text.svg")}
       />
       <div className="middle-area">
-        <img src={chrome.runtime.getURL("assets/record-tab-active.svg")} />
         <div className="title">
           {!started
             ? chrome.i18n.getMessage("recorderSelectTitle")

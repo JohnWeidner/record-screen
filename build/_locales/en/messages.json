@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "extDesc": {
-    "message": "The free and privacy-friendly screen recorder with no limits. Capture, annotate, edit videos and more - all with no sign in needed.",
+    "message": "The simplest way to record your screen with audio.",
     "description": "Extension description"
   },
   "recordTab": {
@@ -106,10 +106,6 @@
   "countdownLabel": {
     "message": "Countdown",
     "description": "Countdown label"
-  },
-  "alarmLabel": {
-    "message": "Set a time limit",
-    "description": "Alarm label"
   },
   "blurTypeLabel": {
     "message": "Blur",
@@ -696,7 +692,7 @@
     "description": "Set up step 3, before the icon. It needs a space at the end."
   },
   "setupStep3After": {
-    "message": " UserBob icon to start",
+    "message": " UaerBob icon to start",
     "description": "Set up step 3, after the icon. It needs a space at the beginning."
   },
   "setupCompleteTitle": {
