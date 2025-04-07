@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState, useRef } from "react";
 
 import Dropdown from "../components/Dropdown";
-import Settings from "./Settings";
 import { contentStateContext } from "../../context/ContentState";
 import { MicOffBlue } from "../../images/popup/images";
 import { AlertIcon, TimeIcon } from "../../toolbar/components/SVG";
@@ -136,11 +135,8 @@ const RecordingType = (props) => {
             ? chrome.i18n.getMessage("recordButtonNoCameraLabel")
             : chrome.i18n.getMessage("recordButtonLabel")}
         </span>
-        <span className="main-button-shortcut">
-          {contentState.recordingShortcut}
-        </span>
+
       </button>
-      <Settings />
     </div>
   );
 };

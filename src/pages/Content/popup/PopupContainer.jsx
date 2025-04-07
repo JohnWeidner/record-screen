@@ -229,6 +229,26 @@ const PopupContainer = (props) => {
     handleDrop(null, { x: x, y: y });
   }, []);
 
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        // Logic to close the popup
+        setContentState((prevContentState) => ({
+          ...prevContentState,
+          showExtension: false,
+        }));
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown); // Cleanup
+    };
+  }, []);
+
+
   return (
     <div
       style={{
@@ -261,23 +281,6 @@ const PopupContainer = (props) => {
           <div
             className={open ? "popup-drag-head" : "popup-drag-head drag-area"}
           ></div>
-          <div
-            className={
-              open ? "popup-controls open" : "popup-controls drag-area"
-            }
-          >
-            <div
-              className="popup-control popup-close"
-              onClick={() => {
-                setContentState((prevContentState) => ({
-                  ...prevContentState,
-                  showExtension: false,
-                }));
-              }}
-            >
-              <CloseIconPopup />
-            </div>
-          </div>
           <div className="popup-cutout">
             <img src={badge} />
           </div>
@@ -301,10 +304,7 @@ const PopupContainer = (props) => {
                   ref={recordTabRef}
                   tabIndex={0}
                 >
-                  <div className="TabsTriggerIcon">
-                    <img src={RecordTabActive} />
-                  </div>
-                  {chrome.i18n.getMessage("recordTab")}
+                  UserBob Screen Recorder
                 </Tabs.Trigger>
               </Tabs.List>
               <Tabs.Content className="TabsContent tl" value="record">
