@@ -679,10 +679,6 @@ const Recorder = () => {
 
   return (
     <div className="wrap">
-      <img
-        className="logo"
-        src={chrome.runtime.getURL("assets/logo-text.svg")}
-      />
       <div className="middle-area">
         <div className="title">
           {!started

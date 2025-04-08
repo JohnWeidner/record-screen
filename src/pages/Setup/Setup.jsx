@@ -41,7 +41,9 @@ const Setup = () => {
       {!setupComplete && (
         <div className="setupContainer">
           <div className="setupImage">
-            <img src={chrome.runtime.getURL("assets/helper/pin.gif")} />
+            <video width="800" height="450" autoPlay loop muted>
+              <source src={chrome.runtime.getURL("assets/helper/installing.mp4")} type="video/mp4" />
+            </video>
           </div>
           <div className="setupText">
             <div className="setupEmoji">👋</div>
@@ -93,10 +95,6 @@ const Setup = () => {
           </div>
         </div>
       )}
-      <img
-        className="setupLogo"
-        src={chrome.runtime.getURL("assets/logo-text.svg")}
-      />
       <style>
         {`
 				body {

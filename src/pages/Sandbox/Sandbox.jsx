@@ -111,7 +111,6 @@ const Sandbox = () => {
       {contentState.mode != "edit" && contentState.ready && <Player />}
       {!contentState.ready && (
         <div className="wrap">
-          <img className="logo" src="/assets/logo-text.svg" />
           <div className="middle-area">
             <div className="title">
               {chrome.i18n.getMessage("sandboxProgressTitle") +
