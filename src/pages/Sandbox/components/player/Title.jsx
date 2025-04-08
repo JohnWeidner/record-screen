@@ -53,8 +53,10 @@ const Title = () => {
     }
   }, [showTitle]);
 
+console.print( 'hello world');
   useEffect(() => {
     const handleKeyDown = (e) => {
+      console.print( 'key ===>' + e.key );
       if (e.key === "Enter") {
         setShowTitle(true);
         setContentState((prevState) => ({

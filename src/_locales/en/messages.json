@@ -27,10 +27,6 @@
     "message": "Camera",
     "description": "Camera recording type label on popup"
   },
-  "mockupType": {
-    "message": "Mockup",
-    "description": "Mockup recording type label on popup"
-  },
   "customAreaRecordingDisabledTitle": {
     "message": "Custom area recording disabled",
     "description": "Custom area recording disabled warning on popup for Chrome version older than 104"
@@ -106,10 +102,6 @@
   "countdownLabel": {
     "message": "Countdown",
     "description": "Countdown label"
-  },
-  "alarmLabel": {
-    "message": "Set a time limit",
-    "description": "Alarm label"
   },
   "blurTypeLabel": {
     "message": "Blur",

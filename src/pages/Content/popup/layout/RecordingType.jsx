@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useState, useRef } from "react";
 
 import Dropdown from "../components/Dropdown";
-import Settings from "./Settings";
 import { contentStateContext } from "../../context/ContentState";
 import { MicOffBlue } from "../../images/popup/images";
 import { AlertIcon, TimeIcon } from "../../toolbar/components/SVG";
@@ -128,12 +127,6 @@ const RecordingType = (props) => {
           background: "#ff5400cf !important",
         }}
       >
-        {contentState.alarm && contentState.alarmTime > 0 && (
-          <div className="alarm-time-button">
-            <TimeIcon />
-            {time}
-          </div>
-        )}
         <span className="main-button-label">
           {contentState.pendingRecording
             ? chrome.i18n.getMessage("recordButtonInProgressLabel")
@@ -142,11 +135,8 @@ const RecordingType = (props) => {
             ? chrome.i18n.getMessage("recordButtonNoCameraLabel")
             : chrome.i18n.getMessage("recordButtonLabel")}
         </span>
-        <span className="main-button-shortcut">
-          {contentState.recordingShortcut}
-        </span>
+
       </button>
-      <Settings />
     </div>
   );
 };

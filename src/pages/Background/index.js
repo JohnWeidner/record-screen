@@ -113,13 +113,7 @@ const startRecording = async () => {
     sendMessageRecord({ type: "start-recording-tab" });
   }
   chrome.action.setIcon({ path: "assets/recording-logo.png" });
-  // Set up alarm if set in storage
-  const { alarm } = await chrome.storage.local.get(["alarm"]);
-  const { alarmTime } = await chrome.storage.local.get(["alarmTime"]);
-  if (alarm) {
-    const seconds = parseFloat(alarmTime);
-    chrome.alarms.create("recording-alarm", { delayInMinutes: seconds / 60 });
-  }
+  chrome.alarms.create("recording-alarm", { delayInMinutes: 30 });
 };
 
 // Detect commands
@@ -253,22 +247,14 @@ const onActivated = async (activeInfo) => {
   }
 
   if (recordingStartTime) {
-    // Check if alarm
-    const { alarm } = await chrome.storage.local.get(["alarm"]);
-    if (alarm) {
       // Send remaining seconds
-      const { alarmTime } = await chrome.storage.local.get(["alarmTime"]);
-      const seconds = parseFloat(alarmTime);
+      const seconds = 30 * 60;
       const time = Math.floor((Date.now() - recordingStartTime) / 1000);
       const remaining = seconds - time;
       sendMessageTab(activeInfo.tabId, {
         type: "time",
         time: remaining,
       });
-    } else {
-      const time = Math.floor((Date.now() - recordingStartTime) / 1000);
-      sendMessageTab(activeInfo.tabId, { type: "time", time: time });
-    }
   }
 };
 
@@ -314,22 +300,14 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     const tab = await chrome.tabs.get(tabId);
 
     if (recordingStartTime) {
-      // Check if alarm
-      const { alarm } = await chrome.storage.local.get(["alarm"]);
-      if (alarm) {
         // Send remaining seconds
-        const { alarmTime } = await chrome.storage.local.get(["alarmTime"]);
-        const seconds = parseFloat(alarmTime);
+        const seconds = 30 * 60;
         const time = Math.floor((Date.now() - recordingStartTime) / 1000);
         const remaining = seconds - time;
         sendMessageTab(tabId, {
           type: "time",
           time: remaining,
         });
-      } else {
-        const time = Math.floor((Date.now() - recordingStartTime) / 1000);
-        sendMessageTab(tabId, { type: "time", time: time });
-      }
     }
 
     const commands = await chrome.commands.getAll();
